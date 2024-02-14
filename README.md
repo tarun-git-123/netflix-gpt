@@ -30,6 +30,8 @@
      - go to edit user and then click on API
      - Register and get the API key an api access token
      - get nowplaying api for movie
+     - get polular api for movie
+     - get upcoming api for movie
 
 
 ...

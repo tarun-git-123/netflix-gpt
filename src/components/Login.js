@@ -13,6 +13,8 @@ import { USER_AVATAR } from "../utils/constant";
 const Login = () => {
   const [isSignInForm, setIsSignInForm] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
+  const [load, setLoad] = useState(false);
+
   const dispatch = useDispatch();
   const name = useRef(null);
   const email = useRef(null);
@@ -22,6 +24,7 @@ const Login = () => {
   };
 
   const handleButtonClick = () => {
+    setLoad(true);
     // validate the form data
     const isValidate = checkValidate(
       email.current.value,
@@ -62,6 +65,7 @@ const Login = () => {
           const errorCode = error.code;
           const errorMessage = error.message;
           setErrorMessage(errorCode + " " + errorMessage);
+          setLoad(false);
         });
     } else {
       signInWithEmailAndPassword(
@@ -77,6 +81,7 @@ const Login = () => {
           const errorCode = error.code;
           const errorMessage = error.message;
           setErrorMessage(errorCode + " " + errorMessage);
+          setLoad(false);
         });
     }
   };
@@ -85,11 +90,11 @@ const Login = () => {
       <Header />
       <div>
         <img
-          className="brightness-[0.4] h-full"
-          src="https://assets.nflxext.com/ffe/siteui/vlv3/4da5d2b1-1b22-498d-90c0-4d86701dffcc/98a1cb1e-5a1d-4b98-a46f-995272b632dd/IN-en-20240129-popsignuptwoweeks-perspective_alpha_website_small.jpg"
+          className="brightness-[0.3] w-[99vw] h-[100vh]"
+          src="https://miro.medium.com/v2/resize:fit:1400/1*5lyavS59mazOFnb55Z6znQ.png"
           alt="logo"
         />
-        <div className="absolute flex justify-center items-center top-[15%] left-[35%] bg-opacity-[0.65] bg-black w-[30%] pt-10 pb-10 max-md:top-0 max-md:left-0 max-md:absolute max-md:flex max-md:justify-center max-md:items-center max-md:w-full max-md:bg-opacity-[1] max-lg:top-[5%] max-lg:left-[20%] max-lg:bg-opacity-[0.65] max-lg:bg-black max-lg:absolute max-lg:flex max-lg:justify-center max-lg:items-center max-lg:w-[60%]">
+        <div className="absolute flex justify-center items-center top-[15%] left-[35%] bg-opacity-[0.65] bg-black w-[30%] pt-10 pb-10 max-md:top-0 max-md:left-0 max-md:absolute max-md:flex max-md:justify-center max-md:items-center max-md:w-full max-md:h-[100%] max-md:bg-opacity-[1] max-lg:top-[20%] max-lg:left-[25%] max-lg:bg-opacity-[0.65] max-lg:bg-black max-lg:absolute max-lg:flex max-lg:justify-center max-lg:items-center max-lg:w-[50%]">
           <form
             onSubmit={(e) => e.preventDefault()}
             className="p-2 w-[70%] max-md:w-[90%] max-lg:w-[90%]"
@@ -112,7 +117,7 @@ const Login = () => {
                 ref={email}
                 type="text"
                 placeholder="Enter Email"
-                className="w-full my-2 p-2 rounded-md bg-transparent border border-gray-400 text-white py-3 px-4 bg-gray-800 bg-opacity-75"
+                className="w-full my-2 px-4 p-2 max-lg:text-sm rounded-md border border-gray-400 text-white bg-gray-800 bg-opacity-75 outline-none"
               />
             </div>
             <div>
@@ -126,9 +131,9 @@ const Login = () => {
             <div>
               <button
                 className="bg-red-600 text-white w-full my-2 p-2 rounded-md"
-                onClick={handleButtonClick}
+                onClick={handleButtonClick} disabled={load === true? 'disabled':''}
               >
-                {isSignInForm ? "Sign In" : "Sign Up"}
+                {load === true? "Please wait":isSignInForm ? "Sign In" : "Sign Up"}
               </button>
             </div>
             {errorMessage && (
@@ -140,7 +145,7 @@ const Login = () => {
               Forgot Password?
             </h1>
             <h1 className="mt-10 text-gray-300 font-normal text-md">
-              {isSignInForm ? "New to Netflix?" : "Already Registered?"}{" "}
+              {isSignInForm ? "New to Netlfix?" : "Already Registered?"}{" "}
               <span
                 className="font-medium text-white cursor-pointer"
                 onClick={toggleSignInForm}

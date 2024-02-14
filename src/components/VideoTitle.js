@@ -1,3 +1,4 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React from 'react'
 
 const VideoTitle = ({title,overview}) => {
@@ -6,8 +7,8 @@ const VideoTitle = ({title,overview}) => {
       <h1 className='text-6xl'>{title}</h1>
       <h1 className='text-xl w-2/4 py-3'>{overview}</h1>
       <div className='flex py-3'>
-        <button className='bg-white text-black px-5 py-3 font-bold text-base rounded-md hover:bg-opacity-65'> Play</button>
-        <button className='bg-gray-500 bg-opacity-70 text-white px-5 py-3 font-bold text-base mx-2 rounded-md hover:bg-opacity-75'> More Info</button>
+        <button className='bg-white text-black px-5 py-3 font-bold text-base rounded-md hover:bg-opacity-65'><FontAwesomeIcon icon="fa-solid fa-play" /> Play</button>
+        <button className='bg-gray-500 bg-opacity-70 text-white px-5 py-3 font-bold text-base mx-2 rounded-md hover:bg-opacity-75'> <FontAwesomeIcon icon="fa-solid fa-circle-info" /> More Info</button>
       </div>
     </div>
   )
